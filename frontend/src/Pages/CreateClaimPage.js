@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
 const current = new Date;
-const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+const date = `${current.getFullYear()}-${current.getMonth()}-${current.getDate()}`;
 const CreateClaimPage = () => {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -25,19 +25,31 @@ const CreateClaimPage = () => {
     e.preventDefault();
     const status = "Pending";
     const Claim = 
-    {firstName, 
-      lastName,
-      insurancePolicyNumber,
+    { InsureanceID: insurancePolicyNumber,
+      FirstName: firstName, 
+      LastName: lastName,
+      ExpenseDate: dateOfExpense,
+      Amount: claimAmount,
+      Purpose: purposeOfExpense,
+      FollowUp: isFollowUpClaim?1:0,
       receiptNumber,
-      dateOfExpense,
-      claimAmount, 
-      purposeOfExpense,
-      isFollowUpClaim,
-      previousClaimID,
-      status,
-      date
+      PreviousClaimID: previousClaimID,
+      Status: status,
+      LastEditedClaimDate: current
     };
-
+    const response = await fetch('/createClaim', {
+      method: 'POST',
+      body: JSON.stringify(Claim),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      }
+    })
+    const json = await response.json()
+    if (response.ok) {
+      dispatch({type: 'CREATE_CLAIM', payload: json})
+    }
+  };
 
     return (
         <div className="row g-3">
