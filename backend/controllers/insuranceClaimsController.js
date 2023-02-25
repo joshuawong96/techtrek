@@ -18,15 +18,25 @@ const getAllClaims = async (req, res) => {
         var ID_list = []
         const result = await getPolicy(req.body.employeeID, ID_list)
         console.log(result)
-        await Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            const claims = policies.map(policy => policy.claims).flat();
-            console.log(claims);
-          });
+        // const claim_id = await Claims.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
+        //     console.log(claim_id)
+        //     if (err) {
+        //       console.error(err);
+        //       return;
+        //     }
+        //     const claims = policies.map(policy => policy.claims).flat();
+        //     console.log(claims);
+        //   });
+        // }
+        const claim_id = await Claims.find({ insuranceID: { $in: ID_list } }).select({ "claimID": 1, "_id": 0})
+        console.log(claim_id)
+        const claim_list = []
+        for (let i=0; i < claim_id.length; i++) {
+            claim_list.push(parseInt(claim_id[i].claimID));
         }
+        console.log(claim_list)
+        res.status(201).send({ claimID: claim_list });
+    }
     catch (error) {
 
         //res.status(500).send({ test: error });
