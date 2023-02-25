@@ -1,5 +1,6 @@
 import Claims from "../database/models/insuranceClaims.js";
 import Policies from "../database/models/policies.js";
+import {ID_list} from "./policyController.js"
 
 
 
@@ -11,7 +12,7 @@ const getAllClaims = async (req, res) => {
 
         // Check for claims.
         // Function to find all claims that belong to a particular policy
-        Policies.find({ insuranceID: { $in: policyNumbers } }, 'claims', (err, policies) => {
+        Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
             if (err) {
               console.error(err);
               return;
