@@ -43,7 +43,7 @@ const CreateClaimPage = () => {
     })
     const json = await response.json()
     if (response.ok) {
-      dispatch({type: 'CREATE_CLAIM', payload: json})
+      // dispatch({type: 'CREATE_CLAIM', payload: json})
     }
   };
 
