@@ -12,7 +12,8 @@ const ClaimCard = ({claim}) => {
     //   method: 'DELETE',
     //   body: json.stringify({ClaimID: claim.ClaimID}),
     //   headers: {
-    //     'Content-Type': 'application/json'
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + localStorage.getItem('token'),
     //   }
     // })
 
@@ -41,7 +42,7 @@ const ClaimCard = ({claim}) => {
   }
 
   const handleEdit = () => {
-    // edit function here
+    // edit function here - navigate
   }
 
   return (
