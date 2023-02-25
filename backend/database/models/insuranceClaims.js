@@ -2,7 +2,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
-const claims = new mongoose.Schema({
+const claimSchema = new mongoose.Schema({
     // loginID: { type: String, required: true },
     claimID: { type: String, required: true, unique: true },
     insuranceID: { type: String, required: true },
@@ -19,5 +19,5 @@ const claims = new mongoose.Schema({
 });
 
 
-const Claims = mongoose.model("claims", userSchema);
+const Claims = mongoose.model("claims", claimSchema);
 export default Claims;

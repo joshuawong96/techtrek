@@ -2,7 +2,7 @@ import express from "express";
 import {
     getAllClaims,
     createClaim,
-} from "../controllers/usersController.js";
+} from "../controllers/insuranceClaimsController.js";
 
 const router = express.Router();
 
