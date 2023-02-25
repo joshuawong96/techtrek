@@ -35,6 +35,6 @@ const startServer = async () => {
 };
 
 // Start of our server.
-startServer();
+startServer()
 
-//getPolicy()
+getPolicy();

@@ -1,28 +1,32 @@
 import Claims from "../database/models/insuranceClaims.js";
 import Policies from "../database/models/policies.js";
-import {ID_list} from "./policyController.js"
+import {getPolicy} from "./policyController.js"
 
 
 
 const getAllClaims = async (req, res) => {
     try {
-        const { error } = validatePolicy(req.body);
-        if (error)
-            return res.status(400).send({ message: error.details[0].message });
-
+        console.log(req.body)
+        // const { error } = validatePolicy(req.body);
+        // if (error)
+        //     return res.status(400).send({ message: error.details[0].message });
+        
         // Check for claims.
         // Function to find all claims that belong to a particular policy
-        Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            const claims = policies.map(policy => policy.claims).flat();
-            console.log(claims);
-          });
+
+        // const ID_list = getPolicy(req, res)
+        console.log(ID_list)
+        // await Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
+        //     if (err) {
+        //       console.error(err);
+        //       return;
+        //     }
+        //     const claims = policies.map(policy => policy.claims).flat();
+        //     console.log(claims);
+        //   });
         }
     catch (error) {
-        res.status(500).send({ message: error });
+        res.status(500).send({ test: error });
     }
 };
 
