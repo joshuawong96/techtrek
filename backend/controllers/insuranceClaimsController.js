@@ -7,26 +7,29 @@ import {getPolicy} from "./policyController.js"
 const getAllClaims = async (req, res) => {
     try {
         console.log(req.body.employeeID)
-        //const { error } = validatePolicy(req.body);
-        if (error)
-            return res.status(400).send({ message: error.details[0].message });
+        console.log("hello world")
+    
+        // //const { error } = validatePolicy(req.body);
+        // if (error)
+        //     return res.status(400).send({ message: error.details[0].message });
         
-        // Check for claims.
-        // Function to find all claims that belong to a particular policy
+        // // Check for claims.
+        // // Function to find all claims that belong to a particular policy
         var ID_list = []
-        getPolicy(req.body.employeeID, ID_list)
-        console.log(ID_list)
-        // await Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
-        //     if (err) {
-        //       console.error(err);
-        //       return;
-        //     }
-        //     const claims = policies.map(policy => policy.claims).flat();
-        //     console.log(claims);
-        //   });
+        const result = await getPolicy(req.body.employeeID, ID_list)
+        console.log(result)
+        await Policies.find({ insuranceID: { $in: ID_list } }, 'claims', (err, policies) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            const claims = policies.map(policy => policy.claims).flat();
+            console.log(claims);
+          });
         }
     catch (error) {
-        res.status(500).send({ test: error });
+
+        //res.status(500).send({ test: error });
     }
 };
 
