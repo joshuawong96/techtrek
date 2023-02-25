@@ -4,7 +4,7 @@ import User from "../database/models/users.js";
 import sendEmail from "../utils/sendEmail.js";
 import {
     validateChangePassword,
-    validateEmail,
+    validateEmployeeID,
     validateSignIn,
     validateSignUp,
 } from "../validation/validateUserSchema.js";
@@ -12,22 +12,23 @@ import {
 // Create a new user account and save to the database.
 const createUser = async (req, res) => {
     try {
+        // console.log(req.body)
         const { error } = validateSignUp(req.body);
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ employeeID: req.body.employeeID });
         if (user)
             return res
                 .status(409)
-                .send({ message: "User with given email already exists" });
+                .send({ message: "User with given employeeID already exists" });
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
         await new User({ ...req.body, password: hashPassword }).save();
         res.status(201).send({ message: "User created successfully" });
     } catch (error) {
-        res.status(500).send({ message: error });
+        res.status(500).send({ test: error });
     }
 };
 
@@ -37,12 +38,12 @@ const loginUser = async (req, res) => {
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        // Check for loginID / email.
-        const user = await User.findOne({ email: req.body.email });
+        // Check for employeeID .
+        const user = await User.findOne({ employeeID: req.body.employeeID });
         if (!user)
             return res
                 .status(401)
-                .send({ message: "Invalid Email or Password" });
+                .send({ message: "Invalid EmployeeID or Password" });
 
         // Check for password
         const validPassword = await bcrypt.compare(
@@ -52,10 +53,10 @@ const loginUser = async (req, res) => {
         if (!validPassword)
             return res
                 .status(401)
-                .send({ message: "Invalid Email or Password" });
+                .send({ message: "Invalid EmployeeID or Password" });
 
         // Generate a authentication token and returns to the user.
-        const token = user.generateAuthToken(req.body.email);
+        const token = user.generateAuthToken(req.body.employeeID);
         res.status(200).send({
             data: token,
             message: "Logged in successfully",
@@ -68,15 +69,15 @@ const loginUser = async (req, res) => {
 // TODO: Feature to reset password by sending a reset email. Does not work with the current service.
 const forgetPasswordUser = async (req, res) => {
     try {
-        const { error } = validateEmail(req.body);
+        const { error } = validateEmployeeID(req.body);
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ employeeID: req.body.employeeID });
 
         if (!user)
             res.status(404).send({
-                message: "Unable to send email to address",
+                message: "Unable to send employeeID to address",
             });
 
         const resetToken = user.generateResetPasswordToken();
@@ -92,7 +93,7 @@ const forgetPasswordUser = async (req, res) => {
         `;
         try {
             sendEmail({
-                to: user.email,
+                to: user.employeeID,
                 subject: "Password Reset Request",
                 text: message,
             });
@@ -120,7 +121,7 @@ const deleteUser = async (req, res) => {
             return res.status(400).send({ message: error.details[0].message });
 
         // Check for loginID / email.
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ employeeID: req.body.employeeID });
         if (!user)
             return res
                 .status(401)

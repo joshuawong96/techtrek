@@ -7,7 +7,7 @@ import { useClaimContext } from '../hooks/useClaimContext'
 const ClaimCard = ({claim}) => {
   const { claims, dispatch } = useClaimContext()
 
-  // const handleDelete = async () => {
+  const handleDelete = async () => {
   //   const response = await fetch('/deleteClaim', {
   //     method: 'DELETE',
   //     body: json.stringify({ClaimID: claim.ClaimID}),
