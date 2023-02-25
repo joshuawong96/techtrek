@@ -1,0 +1,50 @@
+.main_div_container {
+    position: relative;
+    text-align: center;
+    border-style: solid;
+    border-width: 5px;
+    display: 20px;
+    padding: 10px 10px;
+    width: 200px;
+    height: 350px;
+    margin: auto;
+    border-radius: 10px;
+    border-color: black;
+
+}
+
+.form_container {
+    height: 300px;
+    border: #4CAF50;
+    border-width: 10px;
+    
+}
+
+.submitButton {
+    margin-top: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 9px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.input {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.errorMessage {
+    text-align-last: center;
+    font-size: 12px;
+    color: red;
+}

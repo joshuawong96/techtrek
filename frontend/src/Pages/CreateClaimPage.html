@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create A Claim</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div id="root"></div>
+<script src="./index.js" type="text/babel"></script>
+  <div class="col-sm-6">
+    <label for="firstName" class="form-label">First name</label>
+    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" />
+    <div class="invalid-feedback">
+      Valid first name is required.
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <label for="lastName" class="form-label">Last name</label>
+    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" />
+    <div class="invalid-feedback">
+      Valid last name is required.
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label for="receipt-number" class="form-label">Receipt No.</label>
+    <input type="text" class="form-control" id="receipt-number" placeholder="" value="" required="" />
+  </div>
+  
+
+  <div class="col-md-5">
+    <label for="date-of-expense">Date of Expense:</label>
+    <input type="date" id="start" name="date-of-expense" value="2018-07-22" min="2000-01-01" max={date} />
+  </div>
+
+  <div class="col-7">
+    <label for="claim-amount" class="form-label">Receipt No.</label>
+    <input type="text" name="currency-field" id="claim-amount" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder=""/>
+  </div>
+
+  <div class="col-md-4">
+    <label for="state" class="form-label">Purpose of Expense</label>
+    <textarea type="text" class="k-textbox"></textarea>
+  </div>
+</div>
+    
+</body>
+</html>
