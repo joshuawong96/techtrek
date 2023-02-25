@@ -3,11 +3,42 @@ import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
+
 // ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
 const current = new Date;
 const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 const CreateClaimPage = () => {
   const [isChecked, setIsChecked] = useState(false);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [insurancePolicyNumber, setInsurancePolicyNumber] = useState("");
+  const [receiptNumber, setReceiptNumber] = useState("");
+  const [dateOfExpense, setDateOfExpense] = useState("");
+  const [claimAmount, setClaimAmount] = useState("");
+  const [purposeOfExpense, setPurposeOfExpense] = useState("");
+  const [isFollowUpClaim, setIsFollowUpClaim] = useState(false);
+  const [previousClaimID, setPreviousClaimID] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const status = "Pending";
+    const Claim = 
+    {firstName, 
+      lastName,
+      insurancePolicyNumber,
+      receiptNumber,
+      dateOfExpense,
+      claimAmount, 
+      purposeOfExpense,
+      isFollowUpClaim,
+      previousClaimID,
+      status,
+      date
+    };
+
+
     return (
         <div className="row g-3">
             <div className="col-sm-6">
@@ -63,6 +94,8 @@ const CreateClaimPage = () => {
             <input type="text" id="myInput" />
               </div>
               )}
+
+          <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={handleSubmit}>Submit</button>
             
         </div>
         )};
