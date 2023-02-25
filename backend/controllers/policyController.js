@@ -2,20 +2,17 @@ import Claims from "../database/models/insuranceClaims.js";
 import Policy from "../database/models/policies.js";
 import { validateDeleteClaim } from "../validation/validatePolicySchema.js";
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 const ID_list = [];
-const getPolicy = async (req, res) => {
-    const get_policies = await Policy.find({
-        employeeID: req.body.employeeID,
-    }).select({ insuranceID: 1, _id: 0 });
+const getPolicy = async (id, ID_list) => {
+    const get_policies = await Policy.find({ employeeID: id }).select({
+        insuranceID: 1,
+        _id: 0,
+    });
 
     for (let i = 0; i < get_policies.length; i++) {
-        ID_list[i] = get_policies[i].insuranceID;
+        console.log(i);
+        ID_list.push(get_policies[i].insuranceID);
     }
-
-    //return get_policies
-    //req.body.employeeID
 };
 
 const deleteClaim = async (req, res) => {
@@ -34,41 +31,4 @@ const deleteClaim = async (req, res) => {
     }
 };
 
-export { ID_list, getPolicy, deleteClaim };
-=======
-
-const getPolicy = async (id, ID_list)=>  {
-    const get_policies = await Policy.find({ employeeID: id }).select({ "insuranceID": 1, "_id": 0});
-    //console.log(get_policies.length)
-
-    for (let i=0; i < get_policies.length; i++) {
-        console.log(i)
-        ID_list.push(get_policies[i].insuranceID);
-    }
-    //console.log(ID_list)
-    //return get_policies
-    //req.body.employeeID
-=======
-
-
-const getPolicy = async (id, ID_list)=>  {
-    const get_policies = await Policy.find({ employeeID: id }).select({ "insuranceID": 1, "_id": 0});
-    //console.log(get_policies.length)
-
-    for (let i=0; i < get_policies.length; i++) {
-        console.log(i)
-        ID_list.push(get_policies[i].insuranceID);
-    }
-    //console.log(ID_list)
-    //return get_policies
-    //req.body.employeeID
->>>>>>> link-claims-policies
-    return ID_list
-}
-export { 
-    // ID_list, 
-    getPolicy};
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> link-claims-policies
+export { getPolicy, deleteClaim };
