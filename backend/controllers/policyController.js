@@ -3,9 +3,9 @@ import Policy from "../database/models/policies.js";
 
 
 
-const getPolicy = async (req, res) => {
+function getPolicy(id) {
     const ID_list = [];
-    const get_policies = await Policy.find({ employeeID: req.body.employeeID }).select({ "insuranceID": 1, "_id": 0});
+    const get_policies = Policy.find({ employeeID: id }).select({ "insuranceID": 1, "_id": 0});
     
 
     for (let i=0; i < get_policies.length; i++) {

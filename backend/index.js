@@ -37,4 +37,4 @@ const startServer = async () => {
 // Start of our server.
 startServer()
 
-getPolicy();
+//getPolicy();
