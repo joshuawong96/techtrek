@@ -4,10 +4,11 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     // loginID: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    // email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
+    age: { type: Integer, required: true}
     resetPasswordToken: { type: String }, // Token used to validate when resetting password.
     resetPasswordExpire: { type: Date }, // Expiration date for resetting password.
 });
