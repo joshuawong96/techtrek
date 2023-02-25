@@ -1,0 +1,11 @@
+.header_div {
+    background-color: black;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.center_text {
+    text-align: center;
+    font-style: italic;
+}
