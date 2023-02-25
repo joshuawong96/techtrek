@@ -3,16 +3,15 @@ import Policy from "../database/models/policies.js";
 
 
 
-function getPolicy(id) {
-    const ID_list = [];
-    const get_policies = Policy.find({ employeeID: id }).select({ "insuranceID": 1, "_id": 0});
-    
+const getPolicy = async (id, ID_list)=>  {
+    const get_policies = await Policy.find({ employeeID: id }).select({ "insuranceID": 1, "_id": 0});
+    console.log(get_policies.length)
 
     for (let i=0; i < get_policies.length; i++) {
-        ID_list[i] = get_policies[i].insuranceID;
+        console.log(i)
+        ID_list.push(get_policies[i].insuranceID);
     }
-
-    return ID_list
+    console.log(ID_list)
     //return get_policies
     //req.body.employeeID
 }
