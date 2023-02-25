@@ -5,7 +5,16 @@ import express from "express";
 import connectDB from "./database/connectDB.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import userRoutes from "./routes/users.routes.js";
+<<<<<<< Updated upstream
 import {getPolicy} from "./controllers/policyController.js";
+=======
+<<<<<<< HEAD
+import claimsRoutes from "./routes/claims.routes.js";
+
+=======
+import {getPolicy} from "./controllers/policyController.js";
+>>>>>>> ba74e1466686e1b3e8d89c68dfb3845c48cc1770
+>>>>>>> Stashed changes
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -14,6 +23,7 @@ app.use(cors());
 // Routes
 app.use("/api/login", userRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/claims", claimsRoutes);
 
 // Starts the server
 const startServer = async () => {
