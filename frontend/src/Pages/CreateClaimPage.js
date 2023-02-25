@@ -1,9 +1,5 @@
 import React, {useState} from "react";
-import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
 
 // ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
 const current = new Date;
