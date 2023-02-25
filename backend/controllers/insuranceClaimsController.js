@@ -1,53 +1,52 @@
-<<<<<<< Updated upstream
 import Claims from "../database/models/insuranceClaims.js";
 import Policies from "../database/models/policies.js";
 
 
-const findClaims = async (req, res) => {
+
+const getAllClaims = async (req, res) => {
     try {
         const { error } = validatePolicy(req.body);
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        // Check for claims
+        // Check for claims.
+        // Function to find all claims that belong to a particular policy
+        Policies.find({ insuranceID: { $in: policyNumbers } }, 'claims', (err, policies) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            const claims = policies.map(policy => policy.claims).flat();
+            console.log(claims);
+          });
+        }
+    catch (error) {
+        res.status(500).send({ message: error });
+    }
+};
 
-        const claims = policies.find({
-            "_policies": {}
-        }) 
-
-
-=======
-const loginUser = async (req, res) => {
+const createClaim = async (req, res) => {
     try {
-        const { error } = validateSignIn(req.body);
+        // console.log(req.body)
+        const { error } = validateSignUp(req.body);
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        // Check for loginID / email.
-        const user = await User.findOne({ email: req.body.email });
-        if (!user)
+        const claims = await Claims.findOne({ claimID: req.body.claimID });
+        if (user)
             return res
-                .status(401)
-                .send({ message: "Invalid Email or Password" });
+                .status(409)
+                .send({ message: "claimID already exists" });
 
-        // Check for password
-        const validPassword = await bcrypt.compare(
-            req.body.password,
-            user.password
-        );
-        if (!validPassword)
-            return res
-                .status(401)
-                .send({ message: "Invalid Email or Password" });
->>>>>>> Stashed changes
-
-        // Generate a authentication token and returns to the user.
-        const token = user.generateAuthToken(req.body.email);
-        res.status(200).send({
-            data: token,
-            message: "Logged in successfully",
-        });
+        const salt = await bcrypt.genSalt(Number(process.env.SALT));
+        await new claims({ ...req.body, claimID }).save();
+        res.status(201).send({ message: "Claim created successfully" });
     } catch (error) {
-        res.status(500).send({ message: error });
+        res.status(500).send({ test: error });
     }
+};
+
+export {
+    getAllClaims,
+    createClaim,
 };
