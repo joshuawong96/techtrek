@@ -11,9 +11,11 @@ const getPolicy = async (req, res) => {
     for (let i=0; i < get_policies.length; i++) {
         ID_list[i] = get_policies[i].insuranceID;
     }
+
     
     //return get_policies
     //req.body.employeeID
 }
-export { ID_list }
-export { getPolicy };
+export { 
+    ID_list, 
+    getPolicy, };

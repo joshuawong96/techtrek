@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.route("/").get(verifyAuthToken, getPrivateData);
 
-router.route("/getAllClaims").post(verifyAuthToken, getPolicy);
+
 
 export default router;
