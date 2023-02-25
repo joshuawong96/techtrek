@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ClaimCard from '../components/ClaimCard'
 import { useClaimContext } from '../hooks/useClaimContext'
+import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
   const { claims, dispatch } = useClaimContext()
@@ -28,9 +29,13 @@ const DashboardPage = () => {
   //   fetchClaims()
   // }, [])
 
+    const uniqueInstrumentType = [...new Set(claims.map((claim) => claim.uniqueInstrumentType))];
 
-
-  
+    const navigate = useNavigate();
+    const createNewClaim = () => {
+      // navigate to create claim page
+      navigate('/createClaim', uniqueInstrumentType);
+    }
 
   return (
     <div>
@@ -41,6 +46,7 @@ const DashboardPage = () => {
           )
         })
       }
+      <button onClick={createNewClaim}>Create New Claim</button>
     </div>
   )
 }

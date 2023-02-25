@@ -1,5 +1,13 @@
 import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+const location = useLocation();
+
+// get userId
+let uniqueITs = location.uniqueInstrumentTypes;
+
 
 // ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
 const current = new Date;
