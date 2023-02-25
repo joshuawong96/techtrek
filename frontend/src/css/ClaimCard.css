@@ -1,0 +1,68 @@
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    margin: 0px 80px;
+    border-radius: 20px;
+    padding: 20px 30px;
+    margin-top: 20px;
+}
+
+.card-title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 3px;
+}
+
+.card-subtitle {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1px;
+}
+
+.card-right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-button-container {
+    display: flex;
+    justify-content: right;
+}
+
+.card-button-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.card-button-bg:hover {
+    cursor: pointer;
+    background-color: #BBBBBB;
+}
+
+.card-status-div {
+    text-align: center;
+    width: 100px;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.rejected {
+    background-color: #F37272;
+}
+
+.approved {
+    background-color: #84F372;
+}
+
+.pending {
+    background-color: #BBBBBB;
+}
+
