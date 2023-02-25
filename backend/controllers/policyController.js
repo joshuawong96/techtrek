@@ -153,8 +153,9 @@ const getPolicy = async (req, res) => {
         
     })
     console.log('2')
-    //const policies = await Policy.find({ employeeID: req.body.employeeID });
+    const get_policies = await Policy.find({ employeeID: req.body.employeeID }).select('insuranceID');
     //console.log(policies)
+    return get_policies
 }
-
+export { get_policies }
 export { getPolicy };
