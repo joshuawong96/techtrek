@@ -1,51 +1,71 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
+
+// ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
 const current = new Date;
 const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
 const CreateClaimPage = () => {
+  const [isChecked, setIsChecked] = useState(false);
     return (
-        <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" />
-              <div class="invalid-feedback">
+        <div className="row g-3">
+            <div className="col-sm-6">
+              <label for="firstName" className="form-label">First name</label>
+              <input type="text" className="form-control" id="firstName" placeholder="" value="" required="" />
+              <div className="invalid-feedback">
                 Valid first name is required.
               </div>
             </div>
 
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" />
-              <div class="invalid-feedback">
+            <div className="col-sm-6">
+              <label for="lastName" className="form-label">Last name</label>
+              <input type="text" className="form-control" id="lastName" placeholder="" value="" required="" />
+              <div className="invalid-feedback">
                 Valid last name is required.
               </div>
             </div>
 
-            <div class="col-12">
-              <label for="receipt-number" class="form-label">Receipt No.</label>
-              <input type="text" class="form-control" id="receipt-number" placeholder="" value="" required="" />
+            <div className="col-12">
+              <label for="insurance-policy-number" className="form-label">Insurance Policy No.</label>
+              <input type="text" className="form-control" id="insurance-policy-number" placeholder="" value="" required="" />
+            </div>
+
+            <div className="col-12">
+              <label for="receipt-number" className="form-label">Receipt No.</label>
+              <input type="text" className="form-control" id="receipt-number" placeholder="" value="" required="" />
             </div>
             
 
-            <div class="col-md-5">
+            <div className="col-md-5">
               <label for="date-of-expense">Date of Expense:</label>
               <input type="date" id="start" name="date-of-expense" value="2018-07-22" min="2000-01-01" max={date} />
             </div>
   
-            <div class="col-7">
-              <label for="claim-amount" class="form-label">Receipt No.</label>
-              <input type="text" name="currency-field" id="claim-amount" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder=""/>
+            <div className="col-7">
+              <label for="claim-amount" className="form-label">Claim Amount</label>
+              <input type="number" name="currency-field" id="claim-amount" />
             </div>
 
-            <div class="col-md-4">
-              <label for="state" class="form-label">Purpose of Expense</label>
-              <textarea type="text" class="k-textbox"></textarea>
+            <div className="col-md-4">
+              <label for="state" className="form-label">Purpose of Expense</label>
+              <textarea type="text" className="k-textbox"></textarea>
             </div>
-        </div>) 
-    };
 
-    // ReactDOM.render(<ReactAppFromCDN />, document.querySelector('#root'));
+            <div className="col-md-4">
+            <label className="form-check-label" for="flexCheckChecked">This is a follow-up claim.</label>
+            <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
+            </div>
+
+            {isChecked && (
+              <div>
+              <label htmlFor="myInput">Previous claim ID:</label>
+            <input type="text" id="myInput" />
+              </div>
+              )}
+            
+        </div>
+        )};
+
 
     export default CreateClaimPage;
