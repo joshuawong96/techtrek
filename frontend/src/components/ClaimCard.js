@@ -40,6 +40,10 @@ const ClaimCard = ({claim}) => {
     // }
   }
 
+  const handleEdit = () => {
+    // edit function here
+  }
+
   return (
     <div>
       <div className="card-container">
@@ -52,8 +56,12 @@ const ClaimCard = ({claim}) => {
         </div>
         <div className="card-right-container">
           <div className="card-button-container">
-            <div className="card-button-bg"><span className="material-symbols-outlined">edit</span></div>
-            <div className="card-button-bg" onClick={handleDelete}><span className="material-symbols-outlined">delete</span></div>
+            <div className="card-button-bg">
+              <span className="material-symbols-outlined" onClick={handleEdit}>edit</span>
+            </div>
+            <div className="card-button-bg" onClick={handleDelete}>
+              <span className="material-symbols-outlined">delete</span>
+            </div>
           </div>
           <div className={"card-status-div " + claim.Status.toLowerCase()}>{claim.Status}</div>
         </div>

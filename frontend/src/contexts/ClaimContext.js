@@ -1,6 +1,5 @@
 import { createContext, useReducer } from 'react'
 
-
 let mockData = [{
     ClaimID: 2010,
     InsuranceID: 1009,
