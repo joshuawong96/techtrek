@@ -17,7 +17,7 @@ const validateSignUp = (data) => {
 const validateSignIn = (data) => {
     const schema = Joi.object({
         employeeID: Joi.number().required().label("EmployeeID"),
-        password: Joi.string().required().label("Password"),
+        password: Joi.string().required().label("Password")
     });
     return schema.validate(data);
 };
@@ -25,17 +25,17 @@ const validateSignIn = (data) => {
 // Validates email, password and newPassword of a user when changing password.
 const validateChangePassword = (data) => {
     const schema = Joi.object({
-        email: Joi.string().email().required().label("Email"),
+        employeeID: Joi.number().required().label("EmployeeID"),
         password: Joi.string().required().label("Password"),
         newPassword: passwordComplexity().required().label("New Password"),
     });
     return schema.validate(data);
 };
 
-// Validates email of user.
-const validateEmail = (data) => {
+// Validates employeeID of user.
+const validateEmployeeID = (data) => {
     const schema = Joi.object({
-        email: Joi.string().email().required().label("Email"),
+        employeeID: Joi.number().required().label("EmployeeID"),
     });
     return schema.validate(data);
 };
@@ -44,5 +44,5 @@ export {
     validateSignUp,
     validateSignIn,
     validateChangePassword,
-    validateEmail,
+    validateEmployeeID
 };
