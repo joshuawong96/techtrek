@@ -5,7 +5,7 @@ import express from "express";
 import connectDB from "./database/connectDB.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import userRoutes from "./routes/users.routes.js";
-
+import {getPolicy} from "./controllers/policyController.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -28,3 +28,5 @@ const startServer = async () => {
 
 // Start of our server.
 startServer();
+
+getPolicy()
