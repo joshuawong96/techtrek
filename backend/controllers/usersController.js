@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
         await new User({ ...req.body, password: hashPassword }).save();
         res.status(201).send({ message: "User created successfully" });
     } catch (error) {
-        res.status(500).send({ test: error });
+        res.status(500).send({ message: error });
     }
 };
 
@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
             return res.status(400).send({ message: error.details[0].message });
 
         // Check for loginID / email.
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ employeeID: req.body.employeeID });
         if (!user)
             return res
                 .status(401)
