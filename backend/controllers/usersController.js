@@ -12,15 +12,16 @@ import {
 // Create a new user account and save to the database.
 const createUser = async (req, res) => {
     try {
+        console.log(req.body)
         const { error } = validateSignUp(req.body);
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        const user = await User.findOne({ email: req.body.employeeID });
+        const user = await User.findOne({ employeeID: req.body.employeeID });
         if (user)
             return res
                 .status(409)
-                .send({ message: "User with employeeID already exists" });
+                .send({ message: "User with given employeeID already exists" });
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
