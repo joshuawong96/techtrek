@@ -4,10 +4,11 @@ import passwordComplexity from "joi-password-complexity";
 // Validates the data(body) of request when signing up.
 const validateSignUp = (data) => {
     const schema = Joi.object({
+        employeeID: Joi.string().required().label("EmployeeID"),
+        password: passwordComplexity().required().label("Password"),
         firstName: Joi.string().required().label("First Name"),
         lastName: Joi.string().required().label("Last Name"),
-        email: Joi.string().email().required().label("Email"),
-        password: passwordComplexity().required().label("Password"),
+        age: Joi.string().required.label("Age")
     });
     return schema.validate(data);
 };
@@ -15,7 +16,7 @@ const validateSignUp = (data) => {
 // Validates email and password of a user when signing in.
 const validateSignIn = (data) => {
     const schema = Joi.object({
-        email: Joi.string().email().required().label("Email"),
+        employeeID: Joi.string().required().label("EmployeeID"),
         password: Joi.string().required().label("Password"),
     });
     return schema.validate(data);

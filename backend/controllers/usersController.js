@@ -16,11 +16,11 @@ const createUser = async (req, res) => {
         if (error)
             return res.status(400).send({ message: error.details[0].message });
 
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.employeeID });
         if (user)
             return res
                 .status(409)
-                .send({ message: "User with given email already exists" });
+                .send({ message: "User with employeeID already exists" });
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -42,7 +42,7 @@ const loginUser = async (req, res) => {
         if (!user)
             return res
                 .status(401)
-                .send({ message: "Invalid Email or Password" });
+                .send({ message: "Invalid EmployeeID or Password" });
 
         // Check for password
         const validPassword = await bcrypt.compare(
@@ -52,7 +52,7 @@ const loginUser = async (req, res) => {
         if (!validPassword)
             return res
                 .status(401)
-                .send({ message: "Invalid Email or Password" });
+                .send({ message: "Invalid EmployeeID or Password" });
 
         // Generate a authentication token and returns to the user.
         const token = user.generateAuthToken(req.body.email);
