@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    age: { type: Integer, required: true}
+    age: { type: Number, required: true},
     resetPasswordToken: { type: String }, // Token used to validate when resetting password.
     resetPasswordExpire: { type: Date }, // Expiration date for resetting password.
 });
